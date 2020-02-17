@@ -1,0 +1,85 @@
+{
+  "data": {
+    "id": 37253,
+    "type": "freelancer",
+    "attributes": {
+      "login": "ddis",
+      "first_name": "Дмитрий",
+      "last_name": "Соколов",
+      "avatar": {
+        "small": {
+          "url": "https://content.freelancehunt.com/profile/photo/50/ddis.png",
+          "width": 50,
+          "height": 50
+        },
+        "large": {
+          "url": "https://content.freelancehunt.com/profile/photo/225/ddis.png",
+          "width": 255,
+          "height": 255
+        }
+      },
+      "birth_date": null,
+      "cv": null,
+      "cv_html": null,
+      "rating": 61,
+      "rating_position": 245686,
+      "arbitrages": 0,
+      "positive_reviews": 0,
+      "negative_reviews": 0,
+      "is_plus_active": false,
+      "is_online": false,
+      "location": {
+        "country": {
+          "id": 1,
+          "name": "Украина"
+        },
+        "city": null
+      },
+      "verification": {
+        "identity": false,
+        "birth_date": false,
+        "phone": false,
+        "website": false,
+        "wmid": false,
+        "email": true
+      },
+      "contacts": {
+        "skype": null,
+        "telegram": null,
+        "phone": null,
+        "wmid": null,
+        "email": "ddis92@gmail.com",
+        "website": null
+      },
+      "plus_ends_at": null,
+      "created_at": "2012-12-01T00:40:17+02:00",
+      "visited_at": "2020-02-17T01:29:28+02:00",
+      "status": {
+        "id": 10,
+        "name": "Свободен для работы"
+      },
+      "skills": [
+        {
+          "id": 43,
+          "name": "Дизайн сайтов",
+          "rating_position": 13509
+        },
+        {
+          "id": 103,
+          "name": "Прикладное программирование",
+          "rating_position": 1765
+        }
+      ]
+    },
+    "links": {
+      "self": {
+        "api": "https://api.freelancehunt.com/v2/freelancers/37253",
+        "web": "https://freelancehunt.com/freelancer/ddis.html"
+      },
+      "reviews": "https://api.freelancehunt.com/v2/freelancers/37253/reviews"
+    }
+  },
+  "links": {
+    "self": "https://api.freelancehunt.com/v2/my/profile"
+  }
+}
