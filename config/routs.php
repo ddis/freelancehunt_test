@@ -17,8 +17,7 @@ $router->get("\/dynamic\/modals\/import-progress", [\App\Controllers\Dynamic\Mod
 #endregion
 
 #region install
-$router->post("\/install\/set-api-key", [\App\Controllers\InstallController::class, "setApiKey"]);
-$router->post("\/install\/set-db-connect", [\App\Controllers\InstallController::class, "setDbConnect"]);
+$router->post("\/install\/init", [\App\Controllers\InstallController::class, "init"]);
 $router->post("\/install\/finish", [\App\Controllers\InstallController::class, "finish"]);
 $router->get("\/install\/check-install-system", [\App\Controllers\InstallController::class, 'checkInstall']);
 #endregion

@@ -5,7 +5,7 @@
                 <h5 class="modal-title">Установка системы</h5>
             </div>
             <div class="modal-body">
-                <form method="POST" data-action="/install/set-api-key"
+                <form method="POST" data-action="/install/init"
                       data-name="API-key-form">
                     <div class="form-group">
                         <label for="field-API-key">API key</label>
@@ -14,18 +14,15 @@
                         <small class="form-text text-muted">Получить ключ можно по <a
                                     href="https://freelancehunt.com/my/api" target="_blank">ссылке</a></small>
                     </div>
-                </form>
-                <hr>
-                <form method="POST" data-action="/install/set-db-connect"
-                      data-validation-action="/install/check-db-connect"
-                      data-name="db-connect-form">
+                    <hr>
                     <div class="form-group">
                         <label>Доступ к базе данных</label>
                         <input type="text" class="form-control" placeholder="Укажите Host" name="db[host]"
                                value="localhost">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Укажите имя базы данныз" name="db[database]">
+                        <input type="text" class="form-control" placeholder="Укажите имя базы данныз"
+                               name="db[database]">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Укажите имя пользователя базы данных"

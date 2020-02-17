@@ -66,11 +66,11 @@ class ConfigManager
      */
     public function save()
     {
-        $config = var_export($this->config, true);
 
         return file_put_contents(
-            CORE_PATH . "/config/configs.php",
-            "<?php " . PHP_EOL . "return " . $config . ";" . PHP_EOL);
+            CORE_PATH . "/config/config.json",
+            json_encode($this->config, JSON_PRETTY_PRINT)
+        );
     }
 
     /**
@@ -78,6 +78,6 @@ class ConfigManager
      */
     protected function loadFromFile()
     {
-        $this->config = require_once CORE_PATH . "/config/configs.php";
+        $this->config = json_decode(file_get_contents(CORE_PATH . "/config/config.json"), true);
     }
 }

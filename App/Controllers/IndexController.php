@@ -18,6 +18,9 @@ class IndexController extends Controller
      */
     public function index()
     {
+        if (!$this->getConfigManager()->get("isInstalled")) {
+            return $this->render("empty");
+        }
         $projectList = (new Projects())->getNewProjects();
         $topSkills   = (new Skills())->topSkills();
 

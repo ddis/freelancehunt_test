@@ -13,5 +13,5 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif|css|js|ico|eot|svg|ttf|woff|woff2)[\?\w\W
 try {
     Kernel\App::run();
 } catch (\Exception $exception) {
-
+    $r = 1;
 }

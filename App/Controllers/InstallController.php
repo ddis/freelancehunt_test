@@ -7,7 +7,6 @@ use App\Services\FreelanceAPI\FreelanceAPI;
 use App\Services\Install\Finish;
 use Kernel\App;
 use Kernel\Controller;
-use Kernel\Services\ConfigManager;
 use Kernel\ValidationData;
 
 /**
@@ -22,7 +21,44 @@ class InstallController extends Controller
      * @throws \App\Services\FreelanceAPI\Exceptions\CurlError
      * @throws \App\Services\FreelanceAPI\Exceptions\JsonError
      */
-    public function setApiKey()
+
+    /**
+     *
+     */
+    public function checkInstall()
+    {
+        $isInstalled = App::getInstance()->get("configManager")->get("isInstalled");
+
+        $this->renderJson([
+            "isInstalled" => $isInstalled ? true : false,
+        ]);
+    }
+
+    /**
+     * @throws \App\Services\FreelanceAPI\Exceptions\ClassNotExist
+     * @throws \App\Services\FreelanceAPI\Exceptions\CurlError
+     * @throws \App\Services\FreelanceAPI\Exceptions\JsonError
+     */
+    public function init()
+    {
+        if ($this->setApiKey() && $this->setDbConnect()) {
+            return $this->renderJson([
+                'status' => "success",
+            ]);
+        }
+
+        return $this->renderJson([
+            'status' => "fail",
+        ]);
+    }
+
+    /**
+     * @return bool
+     * @throws \App\Services\FreelanceAPI\Exceptions\ClassNotExist
+     * @throws \App\Services\FreelanceAPI\Exceptions\CurlError
+     * @throws \App\Services\FreelanceAPI\Exceptions\JsonError
+     */
+    protected function setApiKey()
     {
         $api       = new FreelanceAPI();
         $validator = new ValidationData();
@@ -52,9 +88,7 @@ class InstallController extends Controller
             $this->getConfigManager()
                  ->save();
 
-            return $this->renderJson([
-                "status" => "success",
-            ]);
+            return true;
         }
 
         return $this->renderJson([
@@ -64,21 +98,9 @@ class InstallController extends Controller
     }
 
     /**
-     *
-     */
-    public function checkInstall()
-    {
-        $isInstalled = App::getInstance()->get("configManager")->get("isInstalled");
-
-        $this->renderJson([
-            "isInstalled" => $isInstalled ? true : false,
-        ]);
-    }
-
-    /**
      * @return bool
      */
-    public function setDbConnect()
+    protected function setDbConnect()
     {
         $validator = new ValidationData();
 
@@ -105,9 +127,7 @@ class InstallController extends Controller
         try {
             $model = new Install();
 
-            return $this->renderJson([
-                'status' => 'success',
-            ]);
+            return true;
         } catch (\Exception $exception) {
             $this->getConfigManager()->set("db", $db)->save();
 
@@ -121,6 +141,10 @@ class InstallController extends Controller
 
     /**
      * @return bool
+     * @throws \App\Services\FreelanceAPI\Exceptions\ClassNotExist
+     * @throws \App\Services\FreelanceAPI\Exceptions\CurlError
+     * @throws \App\Services\FreelanceAPI\Exceptions\JsonError
+     * @throws \ErrorException
      */
     public function finish()
     {
