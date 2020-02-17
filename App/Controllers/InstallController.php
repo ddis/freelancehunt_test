@@ -47,9 +47,7 @@ class InstallController extends Controller
             ]);
         }
 
-        return $this->renderJson([
-            'status' => "fail",
-        ]);
+        return false;
     }
 
     /**
@@ -73,10 +71,12 @@ class InstallController extends Controller
                   ])->validate();
 
         if ($validator->hasErrors()) {
-            return $this->renderJson([
+            $this->renderJson([
                 'status' => "validation-error",
                 "error"  => $validator->getMessages(),
             ], new \Exception("Bad Request", 406));
+
+            return false;
         }
 
         $key = $validator->getData();
@@ -91,10 +91,12 @@ class InstallController extends Controller
             return true;
         }
 
-        return $this->renderJson([
+        $this->renderJson([
             "status"  => "fail",
             "message" => "Ошибка авторизации. Проверте ключ.",
         ], new \Exception("Bad Request", 406));
+
+        return false;
     }
 
     /**
@@ -114,10 +116,12 @@ class InstallController extends Controller
                   ])->validate();
 
         if ($validator->hasErrors()) {
-            return $this->renderJson([
+            $this->renderJson([
                 'status' => "validation-error",
                 "error"  => $validator->getMessages(),
             ], new \Exception("Bad Request", 406));
+
+            return false;
         }
 
         $db = $this->getConfigManager()->get("db");
@@ -131,10 +135,12 @@ class InstallController extends Controller
         } catch (\Exception $exception) {
             $this->getConfigManager()->set("db", $db)->save();
 
-            return $this->renderJson([
+            $this->renderJson([
                 'status'  => 'fail',
                 "message" => "Неудалось подключиться к базе данных",
             ], new \Exception("Bad Request", 406));
+
+            return false;
         }
 
     }

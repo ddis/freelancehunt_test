@@ -130,6 +130,7 @@ $().ready(function () {
                             method  : $(value).prop("method"),
                             data    : data,
                             dataType: "JSON",
+                            dataType: "JSON",
                             success : (res) => {
                                 if (res.status === "success") {
                                     resolve(res);
